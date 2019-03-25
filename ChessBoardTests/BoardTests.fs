@@ -31,8 +31,9 @@ module BoardTests =
     let testData () =
         seq{
                 yield [| [|q 1 1|]:> Object; 0 :>Object |] // no conflicts on 1 queen obviously
-                yield [| [|q 1 1;q 1 2|]:> Object; 1 :>Object |]
-                yield [| [|q 1 1;q 2 1|]:> Object; 1 :>Object |]
+                yield [| [|q 1 1;q 1 2|]:> Object; 2 :>Object |]
+                yield [| [|q 1 1;q 2 1|]:> Object; 2 :>Object |]
+                yield [| [|q 1 1;q 2 2|]:> Object; 2 :>Object |]
         }
 
     [<Theory>]

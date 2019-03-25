@@ -8,8 +8,9 @@ module Board =
     let createQueenNewPos newPos= { position = newPos }
 
     let hasDiagonalConflicts queen queens =
+        let numberOfQueens = queens |> Seq.length
         let conflictingQueens = seq{ 
-            for i in -8 .. 8  do 
+            for i in -numberOfQueens  .. numberOfQueens  do 
                 if i<>0 then  yield {x=i+queen.position.x;y=i+queen.position.y}}
         Seq.exists (fun q-> Seq.contains q.position conflictingQueens) queens
         
@@ -18,13 +19,21 @@ module Board =
             |> Seq.filter(fun q->hasDiagonalConflicts q queens) 
             |> Seq.length
 
+    let countConflictGroups conflictGroups =
+        conflictGroups
+            |> Seq.map(fun (i,qs) ->Seq.length qs)
+            |> Seq.filter(fun l -> l>1)
+            |> Seq.fold (fun acc l->acc+l) 0
+
     let evaluateHorizontally queens =
-        Seq.length queens - Seq.length (queens 
-            |> Seq.groupBy(fun q -> q.position.x))
+        queens 
+            |> Seq.groupBy(fun q -> q.position.x) 
+            |> countConflictGroups
 
     let evaluateVertically queens =
-        Seq.length queens - Seq.length (queens 
-            |> Seq.groupBy(fun q -> q.position.y))
+        queens 
+            |> Seq.groupBy(fun q -> q.position.y) 
+            |> countConflictGroups
 
     let isDiagonalStep (position1,position2) =
         let xDiff = position1.x-position2.x
