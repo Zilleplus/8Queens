@@ -6,6 +6,9 @@
 
   <ItemGroup>
     <Compile Include="MoveGenerator.fs" />
+    <Compile Include="MoveApplier.fs" />
+    <Compile Include="SARunner.fs" />
+    <Compile Include="SDRunner.fs" />
     <Compile Include="MoveRunner.fs" />
   </ItemGroup>
 

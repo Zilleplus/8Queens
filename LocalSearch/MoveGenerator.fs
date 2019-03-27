@@ -6,7 +6,6 @@ module MoveGenerator =
 
     type Move = {from:Position;too:Position}
 
-    let CreateEmptyMove()= {from = {x=1;y=1};too = {x=1;y=1}}
     let GenerateMoves queens =
         queens 
             |> Seq.map(fun q-> 

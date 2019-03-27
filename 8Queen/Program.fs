@@ -25,16 +25,9 @@ let main argv =
     let startQueens = seq{for x in 1 .. 8 -> Board.createQueen x 1}
     printBoard startQueens 
     printfn "------"
-    let move queens =  Run(GenerateMoves startQueens) queens Board.evaluate
-    printBoard (move startQueens )
+    printfn "Solving 8Queen problem ..."
+    let move queens =  run(GenerateMoves startQueens) queens Board.evaluate 
+    printBoard (move startQueens |> Seq.toList)
     printfn "------"
 
-    let rec solveRec iterationIndex currentState =
-        match iterationIndex with 
-        | 20 -> currentState
-        | _ -> solveRec (iterationIndex + 1) (move currentState)
-    let solve = solveRec 0
-
-    printBoard (solve (Seq.toList startQueens))
-
-    0 // result of main
+    0
