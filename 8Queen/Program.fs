@@ -26,7 +26,7 @@ let main argv =
     printBoard startQueens 
     printfn "------"
     printfn "Solving 8Queen problem ..."
-    let move queens =  run(GenerateMoves startQueens) queens Board.evaluate 
+    let move queens =  run (MoveGenerator.generate) queens Board.evaluate 
     printBoard (move startQueens |> Seq.toList)
     printfn "------"
 

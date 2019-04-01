@@ -11,13 +11,13 @@ module SDRunner =
         | SUCCESS of Move // if success return move 
         | FAILURE 
 
-    let run moves queens evaluator =
+    let run moveGenerator queens evaluator =
         let accumulateBestMove  (acc_move,acc_cost) (move,cost) =
             match acc_cost>cost with
             | true -> (move,cost)
             | _    -> (acc_move,acc_cost)
         let (bestMove,cost) = 
-            moves 
+            (moveGenerator queens)
             |> Seq.map(fun move-> (move, evaluator (MoveApplier.applyMove queens move) 1))
             |> Seq.fold accumulateBestMove (CreateEmptyMove(),1000)
 
@@ -25,8 +25,8 @@ module SDRunner =
             | 1000 -> FAILURE 
             | _    -> SUCCESS (bestMove)
 
-    let runFree moves queens evaluator maxInters =
-        let trySD state = run moves state evaluator
+    let runFree moveGenerator queens evaluator maxInters =
+        let trySD state = run moveGenerator state evaluator
 
         let rec recRun currentQueens index = 
             let newIndex = index+1

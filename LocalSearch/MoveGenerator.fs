@@ -6,7 +6,7 @@ module MoveGenerator =
 
     type Move = {from:Position;too:Position}
 
-    let GenerateMoves queens =
+    let generate queens =
         queens 
             |> Seq.map(fun q-> 
                 {1.. (Seq.length queens)} 
