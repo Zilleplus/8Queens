@@ -1,6 +1,7 @@
 ﻿namespace LocalSearch
 
 module Scrambler =
+    open System
     
-    let scramble sequence =
-        sequence
+    let scramble sqn= 
+        sqn

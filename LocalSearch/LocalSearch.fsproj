@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Scrambler.fs" />
     <Compile Include="PseudoRandomNumberGenerator.fs" />
+    <Compile Include="Scrambler.fs" />
     <Compile Include="MoveGenerator.fs" />
     <Compile Include="MoveApplier.fs" />
     <Compile Include="SARunner.fs" />

@@ -42,4 +42,4 @@ module Board =
         abs(yDiff) = 1 &&  abs(yDiff) = 1 && sign(xDiff)=sign(yDiff)
 
     let evaluate queens penalty=
-        (evaluateHorizontally queens+ evaluateVertically queens + evaluateDiagonal queens)*penalty
+        ((evaluateHorizontally queens+ evaluateVertically queens + evaluateDiagonal queens)) *penalty
