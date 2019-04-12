@@ -22,5 +22,7 @@ module MoveRunner =
                 && iteration<maxIterations 
                     -> runSearch (localSearch newQs) (iteration+1)
             | SARunner.NoMovesAccepted when iteration<maxIterations -> runSearch qs (iteration+1)
-            | SARunner.NoMovesAccepted when iteration>=maxIterations -> qs
+            | _ when iteration>=maxIterations -> qs
+            | _ -> runSearch qs (iteration+1)
+
         runSearch (localSearch queens) 1
